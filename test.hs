@@ -26,4 +26,32 @@ maximo3 x y z   |x >= y && x >= z = x
                 |otherwise = z
 
 digitounidades :: Int -> Int
-digitounidades n = mod n 10      
+digitounidades n = mod n 10    
+
+todoMenor :: (Float,Float) -> (Float, Float) -> Bool
+todoMenor (a,b) (c,d)   = a < b && c < d
+
+primerPar :: (Int, Int, Int) -> Int
+primerPar (x,y,z)   | mod x 2 == 0 = 1
+                    | mod y 2 == 0 = 2
+                    | mod z 2 == 0 = 3
+                    | otherwise = 4
+
+distanciaManhattan:: (Float, Float, Float) -> (Float,Float, Float) -> Float
+distanciaManhattan (a,b,c) (d,e,f) = abs(a-d)+abs(b-e) + abs(c-f)
+
+algunoEs0 :: Int -> Int -> Bool
+algunoEs0 x y   = y == 0 || x == 0
+
+ambosSon0 :: Int -> Int -> Bool
+ambosSon0 x y = y == 0 && x == 0
+
+mismoIntervalo :: Int -> Int -> Bool
+mismoIntervalo x y  = (x <= 3 && y <= 3) || (x > 3 && x <= 7 && y > 3 && y <= 7) || (x > 7 && y > 7) 
+
+sumaDistintos :: Int -> Int -> Int -> Int
+sumaDistintos x y z | (x /= y && y /=z && x /= z) = x + y + z
+                    | (x == y && x /=z) = x + z
+                    | (x == z && x /=y) = x + y
+                    | (x == y && x == z) = x
+                    | (x /= y && y = z) = x + y
