@@ -1,0 +1,21 @@
+fibonacci :: Int -> Int
+fibonacci n | n == 0 = 0
+            | n == 1 = 1
+            |otherwise = fibonacci(n-1) + fibonacci(n-2)
+    
+factorial :: Int -> Int
+factorial n | n == 0 = 1
+            | n > 0 = n * factorial (n-1)
+
+parteEntera :: Float -> Int
+parteEntera a   | a >=0 && a < 1 = 0 
+                | a >=1 = parteEntera (a-1) +1
+                | a < 0 && a > (-1) = (-1)
+                | a <= (-1) = parteEntera (a+1) -1
+
+esDivisible :: Int-> Int -> Bool
+esDivisible x y | x == 0 = True
+                | x == y = True
+                | x < y = False
+                | x < 0 = False
+                | x > 0 = esDivisible (x-y) y
