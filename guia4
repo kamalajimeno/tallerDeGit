@@ -19,3 +19,56 @@ esDivisible x y | x == 0 = True
                 | x < y = False
                 | x < 0 = False
                 | x > 0 = esDivisible (x-y) y
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
+import Distribution.Simple.Utils (xargs, debug)
+fibonacci :: Int -> Int
+fibonacci n | n == 0 = 0
+            | n == 1 = 1
+            |otherwise = fibonacci(n-1) + fibonacci(n-2)
+
+factorial :: Int -> Int
+factorial n | n == 0 = 1
+            | n > 0 = n * factorial (n-1)
+
+parteEntera :: Float -> Int
+parteEntera a   | a >=0 && a < 1 = 0
+                | a >=1 = parteEntera (a-1) +1
+                | a < 0 && a > (-1) = (-1)
+                | a <= (-1) = parteEntera (a+1) -1
+
+
+esDivisible :: Int-> Int -> Bool
+esDivisible x y | x == 0 = True
+                | x == y = True
+                | x < y = False
+                | x < 0 = False
+                | x > 0 = esDivisible (x-y) y
+                
+
+iesimoDigito :: Int -> Int -> Int
+iesimoDigito x y | y == 1 = primerDigito x
+                 | y>1 =iesimoDigito (sacarPrimerDigito x) (y-1)
+                 
+primerDigito :: Int -> Int
+primerDigito n = div n (10^((cantDigitos n)-1))
+
+cantDigitos :: Int -> Int
+cantDigitos n | n<10 = 1
+              |otherwise = 1 + cantDigitos (div n 10)
+
+sacarPrimerDigito :: Int -> Int
+sacarPrimerDigito n = mod n (10^((cantDigitos n)-1))
+
+{- dobleSumaDePot :: Int -> Int -> Int
+dobleSumaDePot 1 m = sumarPot 1 m
+dobleSumaDePot n m = sumarPot n m + dobleSumaDePot (n-1) m
+
+sumarPot
+-}
+menorDivisor :: Integer -> Integer
+menorDivisor n = menorDivisordesde 2 n 
+
+menorDivisordesde :: Int -> Int -> Int 
+menorDivisordesde d n | mod n d == 0 = d
+                      | otherwise = menorDivisordesde (d+1) n
