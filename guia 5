@@ -1,0 +1,42 @@
+{- pertenece [] : lista vacia
+pertenece [x] : 1 unico elemento
+pertenece (x:xs): x es cabeza, xs es la cola (todos los demás)
+-}
+pertenece :: (Eq t) => t -> [t] -> Bool
+pertenece _ [] = False
+pertenece e (x:xs) = e == x || pertenece e xs
+
+longitud :: [t] -> Int
+longitud [] = 0
+longitud (x:xs) = 1 + longitud xs
+
+ultimo :: [t] -> t
+ultimo [n] = n
+ultimo (x:xs) = ultimo xs
+
+principio :: [t] -> [t]
+principio [x] = []
+principio (x:xs) = (x: principio xs)
+
+hayRepetidos :: (Eq t) => [t] -> Bool
+hayRepetidos [] = False
+hayRepetidos [x] = False
+hayRepetidos (x:xs) = pertenece x xs || hayRepetidos xs
+
+
+todosIguales :: (Eq t) => [t] -> Bool
+todosIguales [] = False
+todosIguales [x] = True
+todosIguales (x:xs) = pertenece x xs && todosIguales xs
+
+quitar :: (Eq t) => t -> [t] -> [t]
+quitar n [x]| n == x = []
+            | otherwise = [x]
+quitar n (x:xs) | n == x = xs
+                | otherwise = [x] ++ quitar n xs
+
+{- quitarTodos :: (Eq t ) => t -> [t] -> [t]
+quitarTodos n [x] = quitar n [x]
+quitarTodos n (x:xs) = quitar n quitar n (x:xs) 
+-}
+
