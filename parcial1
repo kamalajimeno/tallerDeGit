@@ -1,0 +1,56 @@
+relacionesValidas :: [(String, String)] -> Bool 
+relacionesValidas [a] = True
+relacionesValidas (x:xs) | pertenece x xs = False
+                         | otherwise = relacionesValidas xs
+
+pertenece ::(Eq t) => t -> [t] -> Bool
+pertenece _ [] = False
+pertenece e (x:xs) = e == x || pertenece e xs
+
+personas :: [(String, String)] -> [String]
+personas [] = ["nadie"] 
+personas [x] = [fst x , snd x]
+personas (x:xs) = quitarRepetidos ([fst x , snd x] ++ personas xs)
+
+quitarRepetidos :: [String] -> [String]
+quitarRepetidos (x:xs)  | xs == [] = [x]
+                        |pertenece x xs = [x] ++ quitar x (quitarRepetidos xs)
+
+quitar :: (Eq t) => t -> [t] -> [t]
+quitar n [x]| n == x = []
+            | otherwise = [x]
+quitar n (x:xs) | n == x = xs
+                | otherwise = [x] ++ quitar n xs
+
+amigosDe :: String -> [(String, String)] -> [String]
+amigosDe a [] = []
+amigosDe a ((c,b):xs)   |a == c = quitarRepetidos ([b] ++ amigosDe a xs)
+                        |a == b = quitarRepetidos ([c] ++ amigosDe a xs)
+                        |otherwise = amigosDe a xs
+
+personaConMasAmigos :: [(String, String)] -> String
+personaConMasAmigos [] = "yo"
+personaConMasAmigos ((u,v):xs)  | contarAmigosDe u ((u,v):xs) >= contarAmigosDe v ((u,v):xs) && contarAmigosDe u ((u,v):xs) >= maximo ( listaContarAmigos xs ) = u
+                                | contarAmigosDe v ((u,v):xs) >= contarAmigosDe u ((u,v):xs) && contarAmigosDe v ((u,v):xs) >= maximo ( listaContarAmigos xs ) = v 
+                                | otherwise = personaConMasAmigos xs
+
+
+contarAmigosDe :: String -> [(String, String)] -> Int
+contarAmigosDe a [] = 0
+contarAmigosDe a (x:xs) = longitud (amigosDe a (x:xs))
+
+longitud :: [t] -> Int
+longitud [] = 0
+longitud (x:xs) = 1 + longitud xs
+
+
+listaContarAmigos :: [(String, String)] -> [Int] 
+listaContarAmigos [] = [0]
+listaContarAmigos ((u,v):xs) = contarAmigosDe u ((u,v):xs) ++ contarAmigosDe v ((u,v):xs) ++ listaContarAmigos xs
+
+maximo :: [Int] -> Int
+maximo [x] = x
+maximo (x:xs)   | x > maximo xs = x
+                | otherwise = maximo xs
+
+
