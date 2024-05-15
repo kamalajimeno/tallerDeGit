@@ -1,0 +1,38 @@
+def imprimir_hola_mundo ():
+    print ('hola mundo')
+
+imprimir_hola_mundo ()
+
+import math
+def perimetro () -> float :
+    # return 2 * 3.142
+    return 2 * math.pi
+
+a = perimetro ()
+print (a)
+
+def es_multiplo_de (n: int, m: int) -> bool:
+    return (n % m) == 0
+
+def es_nombre_largo (n: str) -> bool:
+    return (3 <= len (n)) and (len (n) <= 8)
+
+def devolver_el_doble_si_es_par (n: int) -> int :
+    if (n % 2) == 0:
+        return n * 2
+    
+def ej6 ():
+    i: int = 10
+    while i <= 40:
+        print (i)
+        i= i +2
+
+def despegue (): 
+    i : int = 10
+    while i > 1:
+        print (i)
+        i = i -1
+    if i == 1:
+        print (i)
+        print ('despegue!')
+
