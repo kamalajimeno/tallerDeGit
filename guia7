@@ -8,6 +8,8 @@ def suma_total (x:list) -> int:
         suma += i
     return suma
 
+
+
 def pertenece (x:int, lista:list) -> bool:
     if x in lista:
         return True
@@ -26,10 +28,13 @@ def contraseña (x:str) -> str:
             if i>='A' and i <= 'Z':
                 tiene_may = True
             
-        if tiene_min = True and tiene_may =True and tiene_num=True: 
-        return "VERDE"
+        if tiene_min == True and tiene_may ==True and tiene_num==True: 
+            return "VERDE"
+        else:
+            return "AMARILLA"
     elif len (x)<5:
         return "ROJA"
     else:
         return "AMARILLA"
+        
       
