@@ -1,0 +1,35 @@
+# in: solo lectura, nunca se modifica el valor se usa en el requiere
+#inout: lectura y escritura, importa el valor de entrada. se modifica segun el asegura y se usa en el requiere 
+# out: no se usa en el requiere
+
+def suma_total (x:list) -> int:
+    suma = 0
+    for i in x:
+        suma += i
+    return suma
+
+def pertenece (x:int, lista:list) -> bool:
+    if x in lista:
+        return True
+    return False
+
+def contraseña (x:str) -> str:
+    if len(x)>8:
+        tiene_min: bool = False
+        tiene_may: bool = False
+        tiene_num: bool = False
+        for i in x:
+            if i>='a' and i<='z':
+                tiene_min = True
+            if i>='0' and i<='9':
+                tiene_num = True
+            if i>='A' and i <= 'Z':
+                tiene_may = True
+            
+        if tiene_min = True and tiene_may =True and tiene_num=True: 
+        return "VERDE"
+    elif len (x)<5:
+        return "ROJA"
+    else:
+        return "AMARILLA"
+      
