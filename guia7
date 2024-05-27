@@ -36,5 +36,30 @@ def contraseña (x:str) -> str:
         return "ROJA"
     else:
         return "AMARILLA"
-        
+
+def pertenece (x:int, lista:list) -> bool:
+    if x in lista:
+        return True
+    return False
+
+def perteneceACadaUnoVersion1 (s: list [list [int]], e:int) -> list [bool]:
+    lista_Nueva: list [bool] = []
+    for i in s:
+        if pertenece (e , i) :
+            lista_Nueva.append(True)
+        else:
+            lista_Nueva.append (False)
+    return lista_Nueva
+
+def esMatriz (s: list[list [int]]) -> bool:
+    for i in range (0,len(s), 1):
+       if len (s[i]) != len (s[0]):
+        return False
+    if len (s) <= 0:
+        return False
+    if len(s[0]) <= 0:
+        return False
+    else: 
+        return True
+     
       
