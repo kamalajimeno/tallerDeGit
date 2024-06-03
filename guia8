@@ -37,6 +37,75 @@ p.put(4)
 print (buscar_el_maximo (p))
 
 
+from queue import Queue as Cola
+import random 
+
+def generar_nros_al_azar (cantidad : int, desde : int, hasta : int) -> Cola[int]:
+    c=Cola()
+    contador = 0
+    while contador != cantidad:
+        c.put (random.randint(desde, hasta))
+        contador += 1
+    return c
+
+p = generar_nros_al_azar(3,5, 9)
+print(p.get())
+
+
+# def armar_secuencia_de_bingo() -> Cola[int]:
+#    c=Cola()
+#    a = random.randint (0,99)
+#    contador= 0
+#    if c.empty():
+#        c.put (a)
+#    while contador != 99:
+#        if a != c.get():
+#            c.put (a)
+#            contador +=1
+#        else:
+#            contador = contador
+#    return c
+
+#b = armar_secuencia_de_bingo()
+#print (b.get())
+
+def agrupar_por_longitud (texto: str)-> dict[int, int]:
+    res: dict[int, int] = dict ()
+
+def dame_lista_palabras (linea: str) -> list[str]:
+    res:list[str] =[]
+    palabra_en_construccion:str = ""
+    for letra in linea:
+        if letra != " ":
+            palabra_en_construccion= palabra_en_construccion+letra
+        else:
+            res.append(palabra_en_construccion)
+            palabra_en_construccion = ""
+    res.append (palabra_en_construccion)
+    return res
+
+def agrupar_por_longitud (texto: str)-> dict[int, int]:
+    res: dict[int, int] = dict ()
+    palabras:list[str] = dame_lista_palabras(texto)
+    for palabra in palabras:
+        longitud:int = len(palabra)
+        if longitud in res.keys():
+            res[longitud] = res[longitud]+1
+        else:
+            res[longitud] = 1
+    return res
+
+def agrupar_por_longitud2 (texto: str)-> dict[int, list[str]]:
+    res: dict[int, int] = dict ()
+    palabras:list[str] = dame_lista_palabras(texto)
+    for palabra in palabras:
+        longitud:int = len(palabra)
+        if longitud in res.keys():
+            res[longitud].append(palabra)
+        else:
+            res[longitud] = [palabra]
+    return res
+
 def recorrer(p: Pila[int]) -> None:
     while not p.empty():
         p.get()
