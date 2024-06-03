@@ -69,9 +69,6 @@ print(p.get())
 #b = armar_secuencia_de_bingo()
 #print (b.get())
 
-def agrupar_por_longitud (texto: str)-> dict[int, int]:
-    res: dict[int, int] = dict ()
-
 def dame_lista_palabras (linea: str) -> list[str]:
     res:list[str] =[]
     palabra_en_construccion:str = ""
